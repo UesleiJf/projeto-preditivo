@@ -49,7 +49,7 @@ https://jupyter.org/install
 
 To run the Project:
 
-    go to /path/to/the/project
+    go/to/path/to/the/project
 
     jupyter notebook
 
