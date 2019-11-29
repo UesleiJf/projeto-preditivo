@@ -53,23 +53,18 @@ To run the Project:
 
     jupyter notebook
 
-Run the command below to update the pip and avoid dependency conflicts when installing requirements.txt
-
-    pip install --upgrade pip
-
-Navigate to the directory /systemcall/ and execute the commands below
-
 A tab will open in your browser and you can browse the project.
 
 ### Creating a database.
 
 You must create a CSV file with the following columns and data types:
 
-id_socio: int
-status: String
-qtde_em_aberto: int
-qtde_em_dia: int
-qtde_em_atraso: int
-qtde_frequencia_ano: int
+* id_socio: int
+* status: String
+* qtde_em_aberto: int
+* qtde_em_dia: int
+* qtde_em_atraso: int
+* qtde_frequencia_ano: int
 
-Created by: Ueslei JF da Silva.
+
+#### Created by: Ueslei JF da Silva.
