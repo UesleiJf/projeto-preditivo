@@ -1,6 +1,4 @@
-# README
-
-## Description
+# Description
 
 This project aims to: analyze a database and through Machine Learning algorithms make assertive predictions for decision making.
 
