@@ -2,7 +2,7 @@
 
 This project aims to: analyze a database and through Machine Learning algorithms make assertive predictions for decision making.
 
-Algorithms used: Linear Regression, Random Forest Regressor, Naive Bayes.
+Algorithms used: Linear Regression, Random Forest Regressor, Naive Bayes and Gradient Boosting.
 
 The project is divided into 3 parts:
 - Static Analysis
