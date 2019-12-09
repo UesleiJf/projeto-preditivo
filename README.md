@@ -17,7 +17,7 @@ The project is divided into 3 parts:
 
 ### Library Versions
 
-* Python:   3.6
+* Python
 * Pickle
 * Numpy
 * Pylab
@@ -49,7 +49,12 @@ To run the Project:
 
     go/to/path/to/the/project
 
-    jupyter notebook
+    jupyter notebook 
+    
+    OR
+
+    jupyter lab
+
 
 A tab will open in your browser and you can browse the project.
 
