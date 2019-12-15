@@ -7,3 +7,5 @@ Practical example:
 - Through a browser, the client passes information to the API and receives a prediction response that was made by the algorithm: ACTIVE status or CANCELED status (the value of this result tells the prediction of which group it belongs to).
 
 - Algorithm analysis will use a CSV file with the test base to return the result.
+
+Created by Ueslei JF da Silva
