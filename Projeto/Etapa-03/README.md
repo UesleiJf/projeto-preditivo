@@ -9,3 +9,6 @@ Practical example:
 - Algorithm analysis will use a CSV file with the test base to return the result.
 
 - Insert CSV your file into "Etapa-03/data" directory
+
+Created by Ueslei JF da Silva
+

@@ -70,4 +70,4 @@ You must create a CSV file with the following columns and data types:
 * qtde_frequencia_ano: int
 
 
-#### Created by: Ueslei JF da Silva.
+#### Created by: Ueslei José Ferreira da Silva.
