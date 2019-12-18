@@ -19,7 +19,7 @@ model_directory = 'model'
 model_file_name = f'{model_directory}/model.pkl'
 model_columns_file_name = f'{model_directory}/model_columns.pkl'
 
-# These will be populated at training time
+# Estes serão preenchidos no momento do treinamento
 model_columns = None
 clf = None
 
@@ -46,14 +46,14 @@ def predict():
 
 @app.route('/train', methods=['GET']) # Create http://host:port/train GET end point
 def train():
-    # using random forest as an example
-    # can do the training separately and just update the pickles
+    # usando random forest como exemplo
+    # pode fazer o treinamento separadamente e apenas atualizar os picles
     from sklearn.ensemble import RandomForestClassifier as rf
 
     df = pd.read_csv(training_data)
     df_ = df[include]
 
-    categoricals = []  # going to one-hot encode categorical variables
+    categoricals = []  # Codificando variáveis categóricas
 
     for col, col_type in df_.dtypes.iteritems():
         if col_type == 'O':
