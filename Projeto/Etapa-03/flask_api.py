@@ -28,7 +28,7 @@ clf = None
 def predict():
     if clf:
         try:
-            json_ = request.json #capture the json from POST
+            json_ = request.json 
             query = pd.get_dummies(pd.DataFrame(json_))
             query = query.reindex(columns=model_columns, fill_value=0)
 
@@ -44,7 +44,7 @@ def predict():
         return 'no model here'
 
 
-@app.route('/train', methods=['GET']) # Create http://host:port/train GET end point
+@app.route('/train', methods=['GET']) 
 def train():
     # usando random forest como exemplo
     # pode fazer o treinamento separadamente e apenas atualizar os picles
