@@ -56,7 +56,9 @@ To run the Project:
     jupyter lab
 
 
-A tab will open in your browser and you can browse the project.
+A tab will open in your browser and you can browse the project:
+
+http://localhost:8888
 
 ### Creating a database.
 
