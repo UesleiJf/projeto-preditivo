@@ -53,6 +53,14 @@ def train():
     df = pd.read_csv(training_data)
     df_ = df[include]
 
+    print("AQUIIIIIIIIIIIIIII:   ");
+    
+    print("DF ->>>>>>    ");
+    print(df);
+
+    print("___DF______   ");
+    print(df_);
+
     categoricals = []  # Codificando variáveis categóricas
 
     for col, col_type in df_.dtypes.iteritems():
