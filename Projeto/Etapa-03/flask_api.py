@@ -10,12 +10,20 @@ from sklearn.externals import joblib
 
 app = Flask(__name__)
 
-# inputs
-
+# Como citado no README.md, as colunas do arquivo CSV tem que por obrigação serem
+# separadas por vírgula E a coluna "status" tem que estar com valores numéricos
+# para esse exemplo foi escolhido os 2 tipos de status (CANCELADO = 1; ATIVO = 0)
+# Ou seja, na saída da previsão, o valor 1 será o sócio com a previsão de cancelamento.
 training_data = 'data/data-set-clube-new-v2.csv'
+
+# selecionando as colunas escolhidas para a previsão. Nessa estapa a Matrícula não
+# foi escolhida
 include = ['status', 'qtde_em_aberto', 'qtde_em_dia', 'qtde_em_atraso', 'qtde_frequencia_ano']
+
+# variável dependente para análise
 dependent_variable = 'status'
 
+# modelos para treino
 model_directory = 'model'
 model_file_name = f'{model_directory}/model.pkl'
 model_columns_file_name = f'{model_directory}/model_columns.pkl'
@@ -25,7 +33,8 @@ model_columns = None
 clf = None
 
 
-@app.route('/predict', methods=['POST']) # Create http://host:port/predict POST end point
+# Create http://host:9999/predict
+@app.route('/predict', methods=['POST'])
 def predict():
     if clf:
         try:
@@ -35,16 +44,17 @@ def predict():
 
             prediction = list(clf.predict(query))
 
-            return jsonify({'prediction': [int(x) for x in prediction]})
+            return jsonify({'Previsão': [int(x) for x in prediction]})
 
         except Exception as e:
 
             return jsonify({'error': str(e), 'trace': traceback.format_exc()})
     else:
-        print('train first')
+        print('Treine um modelo primeiro')
         return 'no model here'
 
 
+# Create http://host:9999/train
 @app.route('/train', methods=['GET']) 
 def train():
     # usando random forest como exemplo
@@ -54,21 +64,23 @@ def train():
     df = pd.read_csv(training_data)
     df_ = df[include]
 
-    categoricals = []  # Codificando variáveis categóricas
+    # Codificando variáveis categóricas
+    categoricals = []  
 
     for col, col_type in df_.dtypes.iteritems():
         if col_type == 'O':
             categoricals.append(col)
         else:
-            df_[col].fillna(0, inplace=True)  # fill NA's with 0 for ints/floats, too generic
+            # Preenchendo possíveis valores com 0
+            df_[col].fillna(0, inplace=True)  
 
-    # get_dummies effectively creates one-hot encoded variables
+    # get_dummies efetivamente cria variáveis codificadas de uma só vez
     df_ohe = pd.get_dummies(df_, columns=categoricals, dummy_na=True)
 
     x = df_ohe[df_ohe.columns.difference([dependent_variable])]
     y = df_ohe[dependent_variable]
 
-    # capture a list of columns that will be used for prediction
+    # Capturando a lista de colunas que serão usadas para previsão
     global model_columns
     model_columns = list(x.columns)
     joblib.dump(model_columns, model_columns_file_name)
@@ -77,24 +89,31 @@ def train():
     clf = rf()
     start = time.time()
     clf.fit(x, y)
-    print('Trained in %.1f seconds' % (time.time() - start))
-    print('Model training score: %s' % clf.score(x, y))
+
+    # Tempo do treino
+    print('Treinado em %.1f segundos' % (time.time() - start))
+
+    # Acurácia: em média 91% nos testes executados
+    print('Acurácia do treinamento do modelo: %s' % clf.score(x, y))
 
     joblib.dump(clf, model_file_name)
 
-    return 'Success'
+    return 'Modelo Treinado com successo!'
 
 
-@app.route('/wipe', methods=['GET']) # Create http://host:port/wipe GET end point
+# Create http://host:9999/wipe
+@app.route('/wipe', methods=['GET']) 
+
+# limpa o modelo de treinamento
 def wipe():
     try:
         shutil.rmtree('model')
         os.makedirs(model_directory)
-        return 'Model wiped'
+        return 'Modelo limpo com sucesso!'
 
     except Exception as e:
         print(str(e))
-        return 'Could not remove and recreate the model directory'
+        return 'Não foi possível remover e recriar o diretório do modelo'
 
 
 if __name__ == '__main__':
@@ -105,13 +124,12 @@ if __name__ == '__main__':
 
     try:
         clf = joblib.load(model_file_name)
-        print('model loaded')
+        print('Modelo Carregado = OK')
         model_columns = joblib.load(model_columns_file_name)
-        print('model columns loaded')
+        print('Colunas do Modelo Carregadas = OK')
 
     except Exception as e:
-        print('No model here')
-        print('Train first')
+        print('Nenhum modelo encontrado. Treine primeiro.')
         print(str(e))
         clf = None
 
