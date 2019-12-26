@@ -32,7 +32,6 @@ model_columns_file_name = f'{model_directory}/model_columns.pkl'
 model_columns = None
 clf = None
 
-
 # Create http://host:9999/predict
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -44,13 +43,14 @@ def predict():
 
             prediction = list(clf.predict(query))
 
+            print('\033[1;34m' + 'Previsão Efetuada com Sucesso!' + '\033[0;0m');
             return jsonify({'Previsão': [int(x) for x in prediction]})
 
         except Exception as e:
 
             return jsonify({'error': str(e), 'trace': traceback.format_exc()})
     else:
-        print('Treine um modelo primeiro')
+        print('\033[31m'+'Nenhum modelo encontrado. Treine primeiro.'+'\033[0;0m')
         return 'no model here'
 
 
@@ -91,10 +91,10 @@ def train():
     clf.fit(x, y)
 
     # Tempo do treino
-    print('Treinado em %.1f segundos' % (time.time() - start))
+    print('\033[1;34m' + 'Treinado em %.1f segundos' % (time.time() - start) + '\033[0;0m')
 
     # Acurácia: em média 91% nos testes executados
-    print('Acurácia do treinamento do modelo: %s' % clf.score(x, y))
+    print('\033[1;34m' + 'Acurácia do treinamento do modelo: %s' % clf.score(x, y) + '\033[0;0m')
 
     joblib.dump(clf, model_file_name)
 
@@ -109,7 +109,7 @@ def wipe():
     try:
         shutil.rmtree('model')
         os.makedirs(model_directory)
-        return 'Modelo limpo com sucesso!'
+        return '\033[1;34m' + 'Modelo limpo com sucesso!' + '\033[0;0m'
 
     except Exception as e:
         print(str(e))
@@ -117,6 +117,7 @@ def wipe():
 
 
 if __name__ == '__main__':
+
     try:
         port = int(sys.argv[1])
     except Exception as e:
@@ -124,12 +125,11 @@ if __name__ == '__main__':
 
     try:
         clf = joblib.load(model_file_name)
-        print('Modelo Carregado = OK')
+        print('Modelo Carregado ' + '\033[1;34m' + ' -------- OK' + '\033[0;0m');
         model_columns = joblib.load(model_columns_file_name)
-        print('Colunas do Modelo Carregadas = OK')
-
+        print('Colunas do Modelo Carregadas ' + '\033[1;34m' + ' -------- OK' + '\033[0;0m');
     except Exception as e:
-        print('Nenhum modelo encontrado. Treine primeiro.')
+        print('\033[31m'+'Nenhum modelo encontrado. Treine primeiro.'+'\033[0;0m')
         print(str(e))
         clf = None
 
