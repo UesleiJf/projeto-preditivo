@@ -7,13 +7,14 @@ Algorithms used: Linear Regression, Random Forest Regressor, Naive Bayes and Gra
 The project is divided into 3 parts:
 - Static Analysis
 - Choice of the best algorithm for problem solving
-- Creating a Container Docker for use via client (entering data to see the forecast).
+- Creating a Container Docker for use via client (entering data to see the forecast). Para executar essa parte do projeto veja o arquivo README.md da Part03.
 
 ### Work environment details
 
 * OS: Ubuntu 16.04 LTS
 * IDE: Jupyter Notebook / Jupyter Lab
 * Database: sqlite3
+* Docker
 
 ### Library Versions
 
@@ -26,6 +27,8 @@ The project is divided into 3 parts:
 * Statsmodels
 * Matplotlib
 * Sklearn
+* Flask
+* Joblib
 
 OBS: It is mandatory to install each library mentioned above.
 For the installation we use pip install...
