@@ -13,7 +13,7 @@ app = Flask(__name__)
 # inputs
 
 training_data = 'data/data-set-clube-new-v2.csv'
-include = ['qtde_em_aberto', 'qtde_em_dia', 'qtde_em_atraso', 'qtde_frequencia_ano']
+include = ['status', 'qtde_em_aberto', 'qtde_em_dia', 'qtde_em_atraso', 'qtde_frequencia_ano']
 dependent_variable = 'status'
 
 model_directory = 'model'
@@ -51,16 +51,8 @@ def train():
     # pode fazer o treinamento separadamente e apenas atualizar os picles
     from sklearn.ensemble import RandomForestClassifier as rf
 
-    print("AQUIIIIIIIIIIIIIII:   ");
-    # print(include);
-
     df = pd.read_csv(training_data)
     df_ = df[include]
-
-    print("DF ****************************    ");
-    print(df);
-    print(" DF__ ****************************  ");
-    print(df_);
 
     categoricals = []  # Codificando variáveis categóricas
 
