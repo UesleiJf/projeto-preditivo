@@ -11,6 +11,7 @@ from sklearn.externals import joblib
 app = Flask(__name__)
 
 # inputs
+
 training_data = 'data/data-set-clube-new-v2.csv'
 include = ['qtde_em_aberto', 'qtde_em_dia', 'qtde_em_atraso', 'qtde_frequencia_ano']
 dependent_variable = 'status'
@@ -50,15 +51,15 @@ def train():
     # pode fazer o treinamento separadamente e apenas atualizar os picles
     from sklearn.ensemble import RandomForestClassifier as rf
 
+    print("AQUIIIIIIIIIIIIIII:   ");
+    # print(include);
+
     df = pd.read_csv(training_data)
     df_ = df[include]
 
-    print("AQUIIIIIIIIIIIIIII:   ");
-    
-    print("DF ->>>>>>    ");
+    print("DF ****************************    ");
     print(df);
-
-    print("___DF______   ");
+    print(" DF__ ****************************  ");
     print(df_);
 
     categoricals = []  # Codificando variáveis categóricas
