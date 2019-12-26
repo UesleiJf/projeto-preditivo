@@ -109,7 +109,7 @@ def wipe():
     try:
         shutil.rmtree('model')
         os.makedirs(model_directory)
-        return '\033[1;34m' + 'Modelo limpo com sucesso!' + '\033[0;0m'
+        return 'Modelo limpo com sucesso!'
 
     except Exception as e:
         print(str(e))
