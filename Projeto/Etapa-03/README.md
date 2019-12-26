@@ -16,7 +16,7 @@ Practical example:
 - The columns of the SCV file in the data directory must be separated by "," (comma).
 Example: (column1, column2, column3, column4 ...)
 
-- A coluna STATUS foi modificada para números inteiros e está da seguinte forma:
+- The STATUS column has been modified to integers and is as follows:
 
 ATIVO = 0
 
@@ -34,7 +34,7 @@ After the above command completes run
 	docker run -p 9999:9999 previsao
 
 
-- Training the model
+#### Training the model
 
 To train our model, we go to the URL:
 
@@ -42,7 +42,7 @@ To train our model, we go to the URL:
 
 Note: In this step we can use a browser of your choice.
 
-- Wipe model
+#### Wipe model
 
 To clear the template we use the URL:
 
@@ -50,7 +50,7 @@ To clear the template we use the URL:
 
 Note: In this step we can use a browser of your choice.
 
-- Making predictions
+#### Making predictions
 
 To make predictions we will need a Client API to perform prediction testing. In this case we use Postman (https://www.getpostman.com/product/api-client).
 
