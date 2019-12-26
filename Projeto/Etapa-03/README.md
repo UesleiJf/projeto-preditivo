@@ -18,9 +18,9 @@ Example: (column1, column2, column3, column4 ...)
 
 - The STATUS column has been modified to integers and is as follows:
 
-ATIVO = 0
+	- ATIVO = 0
 
-CANCELADO = 1
+	- CANCELADO = 1
 
 
 ### Creating the Project Framework with Docker:
