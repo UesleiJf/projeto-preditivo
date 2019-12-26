@@ -13,11 +13,17 @@ Practical example:
 
 ### IMPORTANT
 
-The columns of the SCV file in the data directory must be separated by "," (comma).
+- The columns of the SCV file in the data directory must be separated by "," (comma).
 Example: (column1, column2, column3, column4 ...)
 
+- A coluna STATUS foi modificada para números inteiros e está da seguinte forma:
 
-#### Creating the Project Framework with Docker:
+ATIVO = 0
+
+CANCELADO = 1
+
+
+### Creating the Project Framework with Docker:
 
 With Docker properly installed, inside the Etapa-03 directory execute the commands:
 
@@ -28,7 +34,7 @@ After the above command completes run
 	docker run -p 9999:9999 previsao
 
 
-#### Training the model
+- Training the model
 
 To train our model, we go to the URL:
 
@@ -36,7 +42,7 @@ To train our model, we go to the URL:
 
 Note: In this step we can use a browser of your choice.
 
-#### Wipe model
+- Wipe model
 
 To clear the template we use the URL:
 
@@ -44,7 +50,7 @@ To clear the template we use the URL:
 
 Note: In this step we can use a browser of your choice.
 
-#### Making predictions
+- Making predictions
 
 To make predictions we will need a Client API to perform prediction testing. In this case we use Postman (https://www.getpostman.com/product/api-client).
 
@@ -75,7 +81,7 @@ Forecast Return (Each row below is the same as the row above):
 In the example above we sent 4 forecasts and only one of them is in the risk area for dropout. Number 1 means status = CANCELADO.
 
 
-#### Closing the container
+### Closing the container
 
 Write down the container_id with the command below:
 
