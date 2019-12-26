@@ -10,5 +10,13 @@ Practical example:
 
 - Insert CSV your file into "Etapa-03/data" directory
 
+
+### IMPORTANT
+
+The columns of the SCV file in the data directory must be separated by "," (comma).
+Example: (column1, column2, column3, column4 ...)
+
+
+
 Created by Ueslei JF da Silva
 
