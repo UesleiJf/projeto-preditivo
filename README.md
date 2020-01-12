@@ -48,13 +48,13 @@ After clone, you need to install Jupyter Notebook
 For full documentation for venv, you can see here:
 https://jupyter.org/install
 
-To run the Project:
+To run the Project go/to/path/to/the/project
 
-    go/to/path/to/the/project
+and execute
 
     jupyter notebook 
     
-    OR
+OR
 
     jupyter lab
 
