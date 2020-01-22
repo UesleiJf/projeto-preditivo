@@ -47,12 +47,10 @@ def predict():
             return jsonify({'Previsão': [int(x) for x in prediction]})
 
         except Exception as e:
-
             return jsonify({'error': str(e), 'trace': traceback.format_exc()})
     else:
         print('\033[31m'+'Nenhum modelo encontrado. Treine primeiro.'+'\033[0;0m')
         return 'no model here'
-
 
 # Create http://host:9999/train
 @app.route('/train', methods=['GET']) 
@@ -63,7 +61,6 @@ def train():
 
     df = pd.read_csv(training_data)
     df_ = df[include]
-
     # Codificando variáveis categóricas
     categoricals = []  
 
@@ -100,24 +97,19 @@ def train():
 
     return 'Modelo Treinado com successo!'
 
-
 # Create http://host:9999/wipe
 @app.route('/wipe', methods=['GET']) 
-
-# limpa o modelo de treinamento
 def wipe():
+    # limpa o modelo de treinamento    
     try:
         shutil.rmtree('model')
         os.makedirs(model_directory)
         return 'Modelo limpo com sucesso!'
-
     except Exception as e:
         print(str(e))
         return 'Não foi possível remover e recriar o diretório do modelo'
 
-
 if __name__ == '__main__':
-
     try:
         port = int(sys.argv[1])
     except Exception as e:
